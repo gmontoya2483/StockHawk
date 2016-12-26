@@ -78,8 +78,8 @@ public final class QuoteSyncJob {
                 String symbol = iterator.next();
                 Stock stock = quotes.get(symbol);
 
-                //TODO Borrar despues de depurar
-                System.out.println(stock.getSymbol());
+                //To debug despues de depurar
+                //System.out.println(stock.getSymbol());
 
                 StockQuote quote = stock.getQuote();
 
@@ -117,7 +117,6 @@ public final class QuoteSyncJob {
 
                 }else{
 
-                    //TODO Remove the Log add a toast message and remove the Code from the preferences
                     String logText=String.format(context.getString(R.string.stock_code_not_valid),symbol);
                     Log.i (LOG_TAG,logText);
 
