@@ -121,7 +121,7 @@ public final class QuoteSyncJob {
                     Log.i (LOG_TAG,logText);
 
                     //Remove the invalid code
-                    PrefUtils.editStockPref(context,symbol,false);
+                    PrefUtils.removeStock(context,symbol);
 
                 }
 
