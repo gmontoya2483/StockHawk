@@ -32,4 +32,8 @@
     <string name="toast_stock_added_no_connectivity">Symbol %s added. Will refresh when network available.</string>
     <string name="toast_no_connectivity">Will refresh when network available.</string>
 
+
+    <!-- Strings for logging Errors -->
+    <string name="stock_code_not_valid">The Stock code %1$s is not valid.</string>
+
 </resources>
