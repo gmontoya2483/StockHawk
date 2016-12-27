@@ -77,53 +77,78 @@ public final class QuoteSyncJob {
             while (iterator.hasNext()) {
                 String symbol = iterator.next();
                 Stock stock = quotes.get(symbol);
+                if(stock!=null){
 
-                //To debug despues de depurar
-                //System.out.println(stock.getSymbol());
+                    //To debug despues de depurar
+                    //System.out.println(stock.getSymbol());
 
-                StockQuote quote = stock.getQuote();
+                    StockQuote quote = stock.getQuote();
 
-                //Check first if the stock is valid, the quote is not null
-                if (quote.getPrice()!=null){
-                    float price = quote.getPrice().floatValue();
-                    float change = quote.getChange().floatValue();
-                    float percentChange = quote.getChangeInPercent().floatValue();
+                    if(quote!=null){
 
-                    // WARNING! Don't request historical data for a stock that doesn't exist!
-                    // The request will hang forever X_x
-                    List<HistoricalQuote> history = stock.getHistory(from, to, Interval.WEEKLY);
+                        //Check first if the stock is valid, the quote is not null
+                        if (quote.getPrice()!=null){
+                            float price = quote.getPrice().floatValue();
+                            float change = quote.getChange().floatValue();
+                            float percentChange = quote.getChangeInPercent().floatValue();
 
-                    StringBuilder historyBuilder = new StringBuilder();
+                            // WARNING! Don't request historical data for a stock that doesn't exist!
+                            // The request will hang forever X_x
+                            List<HistoricalQuote> history = stock.getHistory(from, to, Interval.WEEKLY);
 
-                    for (HistoricalQuote it : history) {
-                        historyBuilder.append(it.getDate().getTimeInMillis());
-                        historyBuilder.append(", ");
-                        historyBuilder.append(it.getClose());
-                        historyBuilder.append("\n");
+                            StringBuilder historyBuilder = new StringBuilder();
+
+                            for (HistoricalQuote it : history) {
+                                historyBuilder.append(it.getDate().getTimeInMillis());
+                                historyBuilder.append(", ");
+                                historyBuilder.append(it.getClose());
+                                historyBuilder.append("\n");
+                            }
+
+                            ContentValues quoteCV = new ContentValues();
+                            quoteCV.put(Contract.Quote.COLUMN_SYMBOL, symbol);
+                            quoteCV.put(Contract.Quote.COLUMN_PRICE, price);
+                            quoteCV.put(Contract.Quote.COLUMN_PERCENTAGE_CHANGE, percentChange);
+                            quoteCV.put(Contract.Quote.COLUMN_ABSOLUTE_CHANGE, change);
+
+
+                            quoteCV.put(Contract.Quote.COLUMN_HISTORY, historyBuilder.toString());
+
+                            quoteCVs.add(quoteCV);
+
+
+
+                        }else{
+
+                            String logText=String.format(context.getString(R.string.stock_code_not_valid),symbol);
+                            Log.i (LOG_TAG,logText);
+
+                            //Remove the invalid code
+                            PrefUtils.removeStock(context,symbol);
+
+                        }
+
+
+
+                    }else{
+
+                        String logText=String.format(context.getString(R.string.stock_code_not_valid),symbol);
+                        Log.i (LOG_TAG,logText);
+
+                        //Remove the invalid code
+                        PrefUtils.removeStock(context,symbol);
+
                     }
-
-                    ContentValues quoteCV = new ContentValues();
-                    quoteCV.put(Contract.Quote.COLUMN_SYMBOL, symbol);
-                    quoteCV.put(Contract.Quote.COLUMN_PRICE, price);
-                    quoteCV.put(Contract.Quote.COLUMN_PERCENTAGE_CHANGE, percentChange);
-                    quoteCV.put(Contract.Quote.COLUMN_ABSOLUTE_CHANGE, change);
-
-
-                    quoteCV.put(Contract.Quote.COLUMN_HISTORY, historyBuilder.toString());
-
-                    quoteCVs.add(quoteCV);
-
 
 
                 }else{
-
                     String logText=String.format(context.getString(R.string.stock_code_not_valid),symbol);
                     Log.i (LOG_TAG,logText);
 
                     //Remove the invalid code
                     PrefUtils.removeStock(context,symbol);
-
                 }
+
 
             }
 
