@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="4">
+
+    <android.support.v4.widget.Space
+        android:layout_columnSpan="4"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"/>
+
+    <WebView  xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/webView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="4"
+        android:layout_marginStart="@dimen/abc_list_item_padding_horizontal_material"
+        />
+
+    <android.support.v4.widget.Space
+        android:layout_columnSpan="4"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"/>
+
+
+    <TextView
+        android:id="@+id/CardSymbol"
+        style="@style/CardStockSymbolTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="start|center_vertical"
+        android:text="GOOG"
+        android:layout_marginStart="@dimen/abc_list_item_padding_horizontal_material"
+        android:layout_columnWeight="2"/>
+
+    <TextView
+        android:id="@+id/CardPrice"
+        style="@style/CardBidPriceTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10sp"
+        android:text="$1000.00"
+        android:layout_columnWeight="1"/>
+
+    <TextView
+        android:id="@+id/CardAbsolut"
+        style="@style/PercentChangeTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/percent_change_pill_green"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+        android:text="$1.34"
+        android:layout_marginEnd="@dimen/abc_list_item_padding_horizontal_material"
+        />
+
+    <TextView
+        android:id="@+id/CardChange"
+        style="@style/PercentChangeTextStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/percent_change_pill_green"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+        android:text="100%"
+        android:layout_marginEnd="@dimen/abc_list_item_padding_horizontal_material"
+        />
+
+    <android.support.v4.widget.Space
+        android:layout_columnSpan="4"
+        android:layout_columnWeight="1"
+        android:layout_rowWeight="1"/>
+
+
+
+
+</GridLayout>

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
@@ -45,9 +46,14 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onClick(String symbol) {
-        Intent intent=new Intent (this,StockDetailsActivity.class);
+
         Timber.d("Symbol clicked: %s", symbol);
-        intent.putExtra("SYMBOL",symbol);
+
+        //Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("http://chart.finance.yahoo.com/z?s=FB&t=6m&q=l&l=on&z=s&p=m50,m200"));
+        //startActivity(intent);
+
+        Intent intent=new Intent (this,StockDetailsActivity.class);
+        intent.putExtra(Contract.Quote.COLUMN_SYMBOL,symbol);
         startActivity(intent);
     }
 

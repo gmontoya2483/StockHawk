@@ -20,4 +20,25 @@
         <item name="android:textSize">25sp</item>
         <item name="android:textAllCaps">true</item>
     </style>
+
+    <style name="CardChartStyle" parent="AppTheme">
+        <item name="cardBackgroundColor">@color/colorWhite</item>
+        <item name="cardCornerRadius">4dp</item>
+        <item name="android:layout_gravity">center_horizontal|top</item>
+        <item name="android:layout_marginStart">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginEnd">@dimen/activity_horizontal_margin</item>
+        <item name="android:layout_marginTop">@dimen/activity_vertical_margin</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">300dp</item>
+    </style>
+
+    <style name="CardBidPriceTextStyle" parent="BidPriceTextStyle">
+        <item name="android:textColor">@color/colorGray</item>
+    </style>
+
+    <style name="CardStockSymbolTextStyle" parent="StockSymbolTextStyle">
+        <item name="android:textColor">@color/colorGray</item>
+    </style>
+
+
 </resources>

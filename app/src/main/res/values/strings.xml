@@ -34,6 +34,16 @@
 
 
     <!-- Strings for logging Errors -->
-    <string name="stock_code_not_valid">The Stock code %1$s is not valid.</string>
+    <string name="stock_code_not_valid">The Stock code %1$f is not valid.</string>
+
+
+
+    <!-- Strings for the StockDetails -->
+    <string name="formatted_Price">$ %1$,.2f </string>
+    <string name="formatted_Absolut">$ %1$,.2f </string>
+    <string name="formatted_Porcentage">%1$,.2f %% </string>
+
+
+
 
 </resources>
