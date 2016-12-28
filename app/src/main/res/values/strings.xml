@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Stock Hawk</string>
 
@@ -34,7 +35,7 @@
 
 
     <!-- Strings for logging Errors -->
-    <string name="stock_code_not_valid">The Stock code %1$f is not valid.</string>
+    <string name="stock_code_not_valid">The Stock code %1$s is not valid.</string>
 
 
 

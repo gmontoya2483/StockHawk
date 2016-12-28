@@ -94,6 +94,12 @@ public final class QuoteSyncJob {
 
                             // WARNING! Don't request historical data for a stock that doesn't exist!
                             // The request will hang forever X_x
+                            // it was added this try in order to catch if the there is no csv. The catch section is not removing the symbol as it is valid however it doesn't get the file.
+                            //TODO find a more efficient way to manage the errors and inform the user. If it is possible.
+
+                            try{
+
+
                             List<HistoricalQuote> history = stock.getHistory(from, to, Interval.WEEKLY);
 
                             StringBuilder historyBuilder = new StringBuilder();
@@ -115,7 +121,13 @@ public final class QuoteSyncJob {
                             quoteCV.put(Contract.Quote.COLUMN_HISTORY, historyBuilder.toString());
 
                             quoteCVs.add(quoteCV);
+                            }catch (Exception exception){
+                                String logText=String.format(context.getString(R.string.stock_code_not_valid),symbol);
+                                Log.i (LOG_TAG,logText);
 
+
+
+                            }
 
 
                         }else{
