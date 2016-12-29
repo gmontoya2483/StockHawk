@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="start|center_vertical"
-        android:text="GOOG"
+        android:text="@string/fake_symbol"
         android:layout_marginStart="@dimen/abc_list_item_padding_horizontal_material"
         android:layout_columnWeight="2"/>
 
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10sp"
-        android:text="$1000.00"
+        android:text="@string/fake_price"
         android:layout_columnWeight="1"/>
 
     <TextView
@@ -53,7 +53,7 @@
         android:background="@drawable/percent_change_pill_green"
         android:paddingStart="3dp"
         android:paddingEnd="3dp"
-        android:text="$1.34"
+        android:text="@string/fake_absolut"
         android:layout_marginEnd="@dimen/abc_list_item_padding_horizontal_material"
         />
 
@@ -65,7 +65,7 @@
         android:background="@drawable/percent_change_pill_green"
         android:paddingStart="3dp"
         android:paddingEnd="3dp"
-        android:text="100%"
+        android:text="@string/fake_change"
         android:layout_marginEnd="@dimen/abc_list_item_padding_horizontal_material"
         />
 

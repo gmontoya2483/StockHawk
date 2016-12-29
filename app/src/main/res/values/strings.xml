@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto">
     <string name="app_name">Stock Hawk</string>
 
     <string name="pref_stocks_initialized_key" translatable="false">initialized</string>
@@ -34,15 +34,32 @@
     <string name="toast_no_connectivity">Will refresh when network available.</string>
 
 
-    <!-- Strings for logging Errors -->
-    <string name="stock_code_not_valid">The Stock code %1$s is not valid.</string>
-
-
 
     <!-- Strings for the StockDetails -->
-    <string name="formatted_Price">$ %1$,.2f </string>
-    <string name="formatted_Absolut">$ %1$,.2f </string>
-    <string name="formatted_Porcentage">%1$,.2f %% </string>
+    <string name="formatted_Price">$ <xliff:g id="price">%1$,.2f </xliff:g></string>
+    <string name="formatted_Absolut">$ <xliff:g id="absolut_value">%1$,.2f</xliff:g> </string>
+    <string name="formatted_Porcentage"><xliff:g id="porcentage">%1$,.2f</xliff:g> %% </string>
+
+    <!--Fake values for StockDetails design -->
+    <string name="fake_symbol">GOOG</string>
+    <string name="fake_price">$ 1000.00</string>
+    <string name="fake_absolut">$ 5.60</string>
+    <string name="fake_change">100 %</string>
+
+
+    <!-- Fake values main activity -->
+    <string name="fake_error">Error message</string>
+
+
+    <!-- StockProvider Strings -->
+    <string name="uri_unknown">Unknown URI: %1s</string>
+
+    <!-- QuoteSyncJob strings -->
+    <string name="running_sync_job">Running sync job</string>
+    <string name="error_stock_code_not_valid">Error: the Stock code %1$s is not valid</string>
+    <string name="error_fetching_stock_quotes">Error fetching stock quotes</string>
+    <string name="scheduling_period_task">Scheduling a periodic task</string>
+
 
 
 
