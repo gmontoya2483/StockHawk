@@ -62,6 +62,26 @@
 
 
 
+    <!-- A11y -->
+    <string name="a11y_stock_symbol">Stock symbol: <xliff:g id="symbol">%1$s</xliff:g></string>
+    <string name="a11y_price">Price: $ <xliff:g id="price">%1$,.2f </xliff:g></string>
+    <string name="a11y_variation_$">Variation: $ <xliff:g id="symbol">%1$,.2f</xliff:g> </string>
+    <string name="a11y_variation_percentage">Variation: <xliff:g id="percentage">%1$,.2f</xliff:g> %% </string>
+    <string name="a11y_variation_$_minus">Variation: minus $ <xliff:g id="symbol">%1$,.2f</xliff:g> </string>
+    <string name="a11y_variation_percentage_minus">Variation: minus <xliff:g id="percentage">%1$,.2f</xliff:g> %% </string>
+
+    <!-- A11y main screen -->
+    <string name="a11y_add_stock_button">Add stock button</string>
+
+    <!-- A11y add stock dialog -->
+    <string name="a11y_symbol_dialog">Enter a stock symbol (e.g. GOOG)</string>
+
+
+    <!-- A11y stock details screen -->
+    <string name="a11y_historical_chart">Historical chart</string>
+
+
+
 
 
 </resources>

@@ -68,26 +68,42 @@ class StockAdapter extends RecyclerView.Adapter<StockAdapter.StockViewHolder> {
 
 
         holder.symbol.setText(cursor.getString(Contract.Quote.POSITION_SYMBOL));
+        holder.symbol.setContentDescription(String.format(context.getString(R.string.a11y_stock_symbol),cursor.getString(Contract.Quote.POSITION_SYMBOL)));
+
         holder.price.setText(dollarFormat.format(cursor.getFloat(Contract.Quote.POSITION_PRICE)));
+        holder.price.setContentDescription(String.format(context.getString(R.string.a11y_price), cursor.getFloat(Contract.Quote.POSITION_PRICE)));
 
 
         float rawAbsoluteChange = cursor.getFloat(Contract.Quote.POSITION_ABSOLUTE_CHANGE);
         float percentageChange = cursor.getFloat(Contract.Quote.POSITION_PERCENTAGE_CHANGE);
 
-        if (rawAbsoluteChange > 0) {
-            holder.change.setBackgroundResource(R.drawable.percent_change_pill_green);
-        } else {
-            holder.change.setBackgroundResource(R.drawable.percent_change_pill_red);
-        }
+
 
         String change = dollarFormatWithPlus.format(rawAbsoluteChange);
         String percentage = percentageFormat.format(percentageChange / 100);
 
-        if (PrefUtils.getDisplayMode(context)
-                .equals(context.getString(R.string.pref_display_mode_absolute_key))) {
+        if (PrefUtils.getDisplayMode(context).equals(context.getString(R.string.pref_display_mode_absolute_key))) {
+
             holder.change.setText(change);
+            if (rawAbsoluteChange >= 0) {
+                holder.change.setBackgroundResource(R.drawable.percent_change_pill_green);
+                holder.change.setContentDescription(String.format(context.getString(R.string.a11y_variation_$), rawAbsoluteChange));
+            } else {
+                holder.change.setBackgroundResource(R.drawable.percent_change_pill_red);
+                holder.change.setContentDescription(String.format(context.getString(R.string.a11y_variation_$_minus), rawAbsoluteChange));
+            }
+
+
         } else {
             holder.change.setText(percentage);
+            if (rawAbsoluteChange >= 0) {
+                holder.change.setBackgroundResource(R.drawable.percent_change_pill_green);
+                holder.change.setContentDescription(String.format(context.getString(R.string.a11y_variation_percentage), percentageChange));
+            } else {
+                holder.change.setBackgroundResource(R.drawable.percent_change_pill_red);
+                holder.change.setContentDescription(String.format(context.getString(R.string.a11y_variation_percentage_minus), percentageChange));
+            }
+
         }
 
 

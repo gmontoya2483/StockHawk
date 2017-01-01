@@ -59,13 +59,7 @@ public class StockDetailsFragment extends Fragment{
 
         getIntentParameters();
         setLayoutObjects();
-
-
-
         setLayoutValues();
-
-
-
 
 
         return mRootView;
@@ -112,42 +106,47 @@ public class StockDetailsFragment extends Fragment{
         //Set the YahooChart
         mWebView.loadUrl(YahooChart.getChartUrl(mSymbol,true));
         mWebView.setWebViewClient(new WebViewClient());
+        mWebView.setContentDescription(null);
 
         //Set the SymbolView
         mSymbolView.setText(mStock.getSymbol());
+        mSymbolView.setContentDescription(String.format(context.getString(R.string.a11y_stock_symbol),mStock.getSymbol()));
 
         //Set the PriceView
         mPriceView.setText(String.format(context.getString(R.string.formatted_Price), mStock.getPrice()));
+        mPriceView.setContentDescription(String.format(context.getString(R.string.a11y_price), mStock.getPrice()));
 
 
-        //Set the Absolut change
+        //Set the Absolute change
         mAbsolutView.setText(String.format(context.getString(R.string.formatted_Absolut), mStock.getAbasolut()));
-        if (mStock.getAbasolut()>0){
+        if (mStock.getAbasolut()>=0){
             mAbsolutView.setBackground(context.getDrawable(R.drawable.percent_change_pill_green));
+            mAbsolutView.setContentDescription(String.format(context.getString(R.string.a11y_variation_$), mStock.getAbasolut()));
 
         }else{
             mAbsolutView.setBackground(context.getDrawable(R.drawable.percent_change_pill_red));
+            mAbsolutView.setContentDescription(String.format(context.getString(R.string.a11y_variation_$_minus), mStock.getAbasolut()));
         }
 
 
-        //Set the Porcentage change
+
+        //Set the Percentage change
         mPorcentageView.setText(String.format(context.getString(R.string.formatted_Porcentage), mStock.getPorcentage()));
-        if (mStock.getPorcentage()>0){
+        if (mStock.getPorcentage()>=0){
             mPorcentageView.setBackground(context.getDrawable(R.drawable.percent_change_pill_green));
+            mPorcentageView.setContentDescription(String.format(context.getString(R.string.a11y_variation_percentage), mStock.getPorcentage()));
 
         }else{
             mPorcentageView.setBackground(context.getDrawable(R.drawable.percent_change_pill_red));
+            mPorcentageView.setContentDescription(String.format(context.getString(R.string.a11y_variation_percentage_minus), mStock.getPorcentage()));
         }
 
-
+        mSymbolView.requestFocus();
 
 
 
 
     }
-
-
-
 
 
 }
