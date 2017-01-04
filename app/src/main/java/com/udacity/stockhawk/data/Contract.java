@@ -46,6 +46,11 @@ public final class Contract {
             return URI.buildUpon().appendPath(symbol).build();
         }
 
+
+        public static Uri BuildAllQuotesUri(){
+            return URI;
+        }
+
         static String getStockFromUri(Uri queryUri) {
             return queryUri.getLastPathSegment();
         }

@@ -11,4 +11,7 @@
     <color name="colorWhite">#ffffff</color>
     <color name="colorGray">#FF3D3D3D</color>
 
+    <!-- the activated state color -->
+    <color name="activated">#E0E0E0</color>
+
 </resources>

@@ -26,7 +26,7 @@ import static android.appwidget.AppWidgetManager.INVALID_APPWIDGET_ID;
 
 public class StockWidgetProvider extends AppWidgetProvider {
 
-    String msymbol;
+
 
 
     @Override

@@ -39,18 +39,20 @@ public class StockWidgetIntentService extends IntentService{
             RemoteViews views=new RemoteViews(getPackageName(), R.layout.widget_stock);
             Stock stock=new Stock(this,stockWidget.getSymbol());
 
-
-
             if (stock.getSymbol()!=Stock.NO_SYMBOL){
 
                 views.setViewVisibility(R.id.widget, View.VISIBLE);
                 views.setViewVisibility(R.id.widget_no_info,View.GONE);
+
                 views.setTextViewText(R.id.widgetSymbol,stock.getSymbol());
+                views.setContentDescription(R.id.widgetSymbol,String.format(getApplicationContext().getString(R.string.a11y_stock_symbol),stock.getSymbol()));
+
                 views.setTextViewText(R.id.widgetPrice,String.format(this.getString(R.string.formatted_Price),stock.getPrice()));
+                views.setContentDescription(R.id.widgetPrice,String.format(getApplicationContext().getString(R.string.a11y_price),stock.getPrice()));
+
 
                 // Create an Intent to launch MainActivity
                 Intent launchIntent = new Intent(this, MainActivity.class);
-                //launchIntent.putExtra(Contract.Quote.COLUMN_SYMBOL,stock.getSymbol());
                 PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, launchIntent, 0);
                 views.setOnClickPendingIntent(R.id.widget, pendingIntent);
 

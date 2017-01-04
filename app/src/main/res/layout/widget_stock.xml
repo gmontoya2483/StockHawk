@@ -41,6 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/stock_widget_no_info"
+        android:contentDescription="@string/stock_widget_no_info"
         android:id="@+id/widget_no_info"
         android:textColor="@color/colorGray"
         android:background="@color/colorWhite"/>

@@ -20,6 +20,24 @@ public class Stock {
     private double mPorcentage;
     private double mAbasolut;
 
+    public void setSymbol(String mSymbol) {
+        this.mSymbol = mSymbol;
+    }
+
+    public void setPrice(double mPrice) {
+        this.mPrice = mPrice;
+    }
+
+    public void setPercentage(double mPercentage) {
+        this.mPorcentage = mPercentage;
+    }
+
+    public void setAbsolute(double mAbasolute) {
+        this.mAbasolut = mAbasolute;
+    }
+
+
+
     public String getSymbol() {
         return mSymbol;
     }
@@ -77,5 +95,23 @@ public class Stock {
 
 
     }
+
+    public Stock (){
+
+    }
+
+
+    public static Cursor getAllStocks(Context context){
+        Cursor cursor;
+
+        Uri allQuotesUri=Contract.Quote.BuildAllQuotesUri();
+        cursor=context.getContentResolver().query(allQuotesUri,Contract.Quote.QUOTE_COLUMNS,null,null,null);
+
+        return cursor;
+
+    }
+
+
+
 
 }

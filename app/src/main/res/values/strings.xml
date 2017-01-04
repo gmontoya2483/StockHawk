@@ -29,6 +29,7 @@
 
     <string name="error_no_network">No network connectivity! Will load stock cursor when the network is available.</string>
     <string name="error_no_stocks">No stocks added! Hit the floating action button to add one.</string>
+    <string name="error_empty_list">No stock information available</string>
 
     <string name="toast_stock_added_no_connectivity">Symbol %s added. Will refresh when network available.</string>
     <string name="toast_no_connectivity">Will refresh when network available.</string>
@@ -87,6 +88,7 @@
     <!--Widget Configuration screen -->
     <string name="conf_button">Add Stock</string>
     <string name="conf_symbol">Symbol (e.g. GOOG)</string>
+    <string name="conf_invalid_app_widget_id">Invalid AppWidgetID</string>
 
 
 
