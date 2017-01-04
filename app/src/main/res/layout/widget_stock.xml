@@ -1,0 +1,49 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="8dp">
+
+    <GridLayout
+        android:id="@+id/widget"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorWhite"
+        android:padding="8dp"
+        android:columnCount="2">
+
+
+        <TextView
+            android:id="@+id/widgetSymbol"
+            style="@style/CardStockSymbolTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start|center_vertical"
+            android:text="@string/fake_symbol"
+            android:layout_marginStart="@dimen/abc_list_item_padding_horizontal_material" />
+
+        <TextView
+            android:id="@+id/widgetPrice"
+            style="@style/CardBidPriceTextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/abc_list_item_padding_horizontal_material"
+            android:text="@string/fake_price"
+            android:gravity="end|center_vertical"
+            android:layout_gravity="right|center_vertical" />
+
+
+    </GridLayout>
+
+    <!-- Text when there is no info for the seleted stock -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/stock_widget_no_info"
+        android:id="@+id/widget_no_info"
+        android:textColor="@color/colorGray"
+        android:background="@color/colorWhite"/>
+
+
+</FrameLayout>

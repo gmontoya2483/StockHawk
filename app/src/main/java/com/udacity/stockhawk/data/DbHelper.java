@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.udacity.stockhawk.data.Contract.Quote;
+import com.udacity.stockhawk.data.Contract.Widget;
 
 
 class DbHelper extends SQLiteOpenHelper {
@@ -20,7 +21,8 @@ class DbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String builder = "CREATE TABLE " + Quote.TABLE_NAME + " ("
+        //Table Quote
+        String builderQuote = "CREATE TABLE " + Quote.TABLE_NAME + " ("
                 + Quote._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + Quote.COLUMN_SYMBOL + " TEXT NOT NULL, "
                 + Quote.COLUMN_PRICE + " REAL NOT NULL, "
@@ -29,7 +31,15 @@ class DbHelper extends SQLiteOpenHelper {
                 + Quote.COLUMN_HISTORY + " TEXT NOT NULL, "
                 + "UNIQUE (" + Quote.COLUMN_SYMBOL + ") ON CONFLICT REPLACE);";
 
-        db.execSQL(builder);
+        db.execSQL(builderQuote);
+
+        String builderWidget="CREATE TABLE " + Widget.TABLE_NAME + " ("
+                + Widget._ID + " INTEGER PRIMARY KEY, "
+                + Widget.COLUMN_WIDGET_SYMBOL + " TEXT NOT NULL "
+                + ");";
+
+        db.execSQL(builderWidget);
+
 
     }
 
@@ -37,6 +47,12 @@ class DbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         db.execSQL(" DROP TABLE IF EXISTS " + Quote.TABLE_NAME);
+        db.execSQL(" DROP TABLE IF EXISTS " + Widget.TABLE_NAME);
+
+
+        //RESET TABLES COUNTER
+        db.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '"+ Widget.TABLE_NAME+"'");
+        db.execSQL("DELETE FROM SQLITE_SEQUENCE WHERE NAME = '"+Quote.TABLE_NAME+"'");
 
         onCreate(db);
     }

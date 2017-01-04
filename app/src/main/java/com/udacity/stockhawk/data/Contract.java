@@ -1,14 +1,18 @@
 package com.udacity.stockhawk.data;
 
 
+import android.content.ContentResolver;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
 public final class Contract {
 
+
     static final String AUTHORITY = "com.udacity.stockhawk";
     static final String PATH_QUOTE = "quote";
     static final String PATH_QUOTE_WITH_SYMBOL = "quote/*";
+    static final String PATH_WIDGET="widget";
+    static final String PATH_WIDGET_WITH_ID="widget/#";
     private static final Uri BASE_URI = Uri.parse("content://" + AUTHORITY);
 
     private Contract() {
@@ -45,6 +49,44 @@ public final class Contract {
         static String getStockFromUri(Uri queryUri) {
             return queryUri.getLastPathSegment();
         }
+
+
+
+
+
+    }
+
+
+    public static final class Widget implements BaseColumns{
+
+
+        //Table Name
+        public static final String TABLE_NAME="widgets";
+
+        //Columns
+        public static final String COLUMN_WIDGET_SYMBOL="widget_symbol";
+
+        // Create content uri
+        public static final Uri CONTENT_URI = BASE_URI.buildUpon()
+                .appendPath(PATH_WIDGET)
+                .build();
+
+        // create cursor of base type directory for multiples entries
+        public static final String CONTENT_DIR_TYPE = ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + AUTHORITY + "/" + PATH_WIDGET;
+
+        // create cursor of base type item for single entry
+        public static final String CONTENT_ITEM_TYPE = ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + AUTHORITY + "/" + PATH_WIDGET;
+
+
+        public static Uri buildWidgetsByWidgetIdUri(Long id){
+            return CONTENT_URI.buildUpon().appendPath(Long.toString(id)).build();
+        }
+
+
+        public static Uri buildAllWidgetsUri(){
+            return CONTENT_URI;
+        }
+
 
 
 

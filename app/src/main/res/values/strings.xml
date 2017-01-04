@@ -34,7 +34,6 @@
     <string name="toast_no_connectivity">Will refresh when network available.</string>
 
 
-
     <!-- Strings for the StockDetails -->
     <string name="formatted_Price">$ <xliff:g id="price">%1$,.2f </xliff:g></string>
     <string name="formatted_Absolut">$ <xliff:g id="absolut_value">%1$,.2f</xliff:g> </string>
@@ -61,7 +60,6 @@
     <string name="scheduling_period_task">Scheduling a periodic task</string>
 
 
-
     <!-- A11y -->
     <string name="a11y_stock_symbol">Stock symbol: <xliff:g id="symbol">%1$s</xliff:g></string>
     <string name="a11y_price">Price: $ <xliff:g id="price">%1$,.2f </xliff:g></string>
@@ -81,6 +79,21 @@
     <string name="a11y_historical_chart">Historical chart</string>
 
 
+    <!--Stock Widget strings -->
+    <string name="stock_widget_no_info">There is no information for the selected Stock</string>
+    <string name="title_activity_stock_widget_configure">StockWidgetConfigure</string>
+
+
+    <!--Widget Configuration screen -->
+    <string name="conf_button">Add Stock</string>
+    <string name="conf_symbol">Symbol (e.g. GOOG)</string>
+
+
+
+    <!-- StockProvider Strings -->
+    <string name="provider_db_not_open">database could not be opened</string>
+    <string name="provider_widget_not_inserted">Widget could not be inserted</string>
+    <string name="provider_widget_delete_problem">There was a problem deleting the Widget</string>
 
 
 
