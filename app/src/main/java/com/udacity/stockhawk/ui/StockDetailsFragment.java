@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.udacity.stockhawk.R;
 import com.udacity.stockhawk.Stock;
+import com.udacity.stockhawk.Utils;
 import com.udacity.stockhawk.YahooChart;
 import com.udacity.stockhawk.data.Contract;
 
@@ -34,6 +35,7 @@ public class StockDetailsFragment extends Fragment{
     private TextView mPriceView;
     private TextView mAbsolutView;
     private TextView mPorcentageView;
+    private TextView mErrorView;
 
     private WebView mWebView;
 
@@ -95,6 +97,7 @@ public class StockDetailsFragment extends Fragment{
         mPriceView=(TextView)mRootView.findViewById(R.id.CardPrice);
         mAbsolutView=(TextView)mRootView.findViewById(R.id.CardAbsolut);
         mPorcentageView=(TextView)mRootView.findViewById(R.id.CardChange);
+        mErrorView=(TextView) mRootView.findViewById(R.id.errorText);
 
     }
 
@@ -104,9 +107,18 @@ public class StockDetailsFragment extends Fragment{
         mStock=new Stock(context,mSymbol);
 
         //Set the YahooChart
-        mWebView.loadUrl(YahooChart.getChartUrl(mSymbol,true));
-        mWebView.setWebViewClient(new WebViewClient());
-        mWebView.setContentDescription(null);
+        if (Utils.NetworkUp(context)){
+            mWebView.loadUrl(YahooChart.getChartUrl(mSymbol,true));
+            mWebView.setWebViewClient(new WebViewClient());
+            mWebView.setContentDescription(null);
+            mWebView.setVisibility(View.VISIBLE);
+            mErrorView.setVisibility(View.GONE);
+
+        }else{
+            mWebView.setVisibility(View.GONE);
+            mErrorView.setVisibility(View.VISIBLE);
+        }
+
 
         //Set the SymbolView
         mSymbolView.setText(mStock.getSymbol());

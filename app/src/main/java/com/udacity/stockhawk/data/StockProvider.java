@@ -170,9 +170,11 @@ public class StockProvider extends ContentProvider {
                 throw new UnsupportedOperationException(String.format(getContext().getString(R.string.uri_unknown),uri.toString()));
         }
 
-        if (rowsDeleted != 0) {
-            getContext().getContentResolver().notifyChange(uri, null);
-        }
+        getContext().getContentResolver().notifyChange(uri, null);
+
+        //if (rowsDeleted != 0) {
+
+        //}
         return rowsDeleted;
     }
 

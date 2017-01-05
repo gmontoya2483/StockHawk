@@ -39,6 +39,7 @@
     <string name="formatted_Price">$ <xliff:g id="price">%1$,.2f </xliff:g></string>
     <string name="formatted_Absolut">$ <xliff:g id="absolut_value">%1$,.2f</xliff:g> </string>
     <string name="formatted_Porcentage"><xliff:g id="porcentage">%1$,.2f</xliff:g> %% </string>
+    <string name="error_no_network_chart">"No Network connectivity. Stock chart was not retrieved."</string>
 
     <!--Fake values for StockDetails design -->
     <string name="fake_symbol">GOOG</string>
@@ -78,6 +79,7 @@
 
     <!-- A11y stock details screen -->
     <string name="a11y_historical_chart">Historical chart</string>
+    <string name="a11y_error_no_network_chart">@string/error_no_network_chart</string>
 
 
     <!--Stock Widget strings -->

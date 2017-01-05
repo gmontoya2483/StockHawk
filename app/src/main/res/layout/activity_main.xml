@@ -7,19 +7,6 @@
     android:orientation="vertical"
     tools:context="com.udacity.stockhawk.ui.MainActivity">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="@dimen/activity_horizontal_margin"
-            android:paddingEnd="@dimen/activity_horizontal_margin" />
-
-    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
@@ -36,6 +23,20 @@
         app:pressedTranslationZ="12dp"
         android:contentDescription="@string/a11y_add_stock_button"/>
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="@dimen/activity_horizontal_margin"
+                android:paddingEnd="@dimen/activity_horizontal_margin" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
     <TextView
         android:id="@+id/error"
         android:layout_width="wrap_content"
@@ -45,3 +46,5 @@
         android:visibility="gone"
         tools:text="@string/fake_error" />
 </merge>
+
+

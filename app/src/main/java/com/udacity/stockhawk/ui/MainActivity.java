@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.udacity.stockhawk.R;
+import com.udacity.stockhawk.Utils;
 import com.udacity.stockhawk.data.Contract;
 import com.udacity.stockhawk.data.PrefUtils;
 import com.udacity.stockhawk.sync.QuoteSyncJob;
@@ -44,13 +45,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     TextView error;
     private StockAdapter adapter;
 
+    private Context mContext;
+
+
     @Override
     public void onClick(String symbol) {
 
         Timber.d("Symbol clicked: %s", symbol);
-
-        //Intent intent = new Intent(Intent.ACTION_VIEW,Uri.parse("http://chart.finance.yahoo.com/z?s=FB&t=6m&q=l&l=on&z=s&p=m50,m200"));
-        //startActivity(intent);
 
         Intent intent=new Intent (this,StockDetailsActivity.class);
         intent.putExtra(Contract.Quote.COLUMN_SYMBOL,symbol);
@@ -69,19 +70,16 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                 .build()
         );
 
+        mContext=this.getApplication();
+       setContentView(R.layout.activity_main);
+       ButterKnife.bind(this);
 
-        //TODO Error handling!!!!!!!!
+       View emptyView=findViewById(R.id.error);
+       adapter = new StockAdapter(this, this,emptyView);
 
-
-
-
-
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-
-        adapter = new StockAdapter(this, this);
         stockRecyclerView.setAdapter(adapter);
         stockRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setRefreshing(true);
@@ -107,27 +105,20 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     }
 
-    private boolean networkUp() {
-        ConnectivityManager cm =
-                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isConnectedOrConnecting();
-    }
 
     @Override
     public void onRefresh() {
 
         QuoteSyncJob.syncImmediately(this);
 
-        if (!networkUp() && adapter.getItemCount() == 0) {
+        if (!Utils.NetworkUp(mContext) && adapter.getItemCount() < 1) {
             swipeRefreshLayout.setRefreshing(false);
             error.setText(getString(R.string.error_no_network));
             error.setVisibility(View.VISIBLE);
-        } else if (!networkUp()) {
+        } else if (!Utils.NetworkUp(mContext)) {
             swipeRefreshLayout.setRefreshing(false);
             Toast.makeText(this, R.string.toast_no_connectivity, Toast.LENGTH_LONG).show();
         } else if (PrefUtils.getStocks(this).size() == 0) {
-            Timber.d("WHYAREWEHERE");
             swipeRefreshLayout.setRefreshing(false);
             error.setText(getString(R.string.error_no_stocks));
             error.setVisibility(View.VISIBLE);
@@ -143,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     void addStock(String symbol) {
         if (symbol != null && !symbol.isEmpty()) {
 
-            if (networkUp()) {
+            if (Utils.NetworkUp(mContext)) {
                 swipeRefreshLayout.setRefreshing(true);
             } else {
                 String message = getString(R.string.toast_stock_added_no_connectivity, symbol);
@@ -167,8 +158,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         swipeRefreshLayout.setRefreshing(false);
 
-        if (data.getCount() != 0) {
+        if (data.getCount() > 0) {
             error.setVisibility(View.GONE);
+            stockRecyclerView.setVisibility(View.VISIBLE);
+        }else{
+            error.setVisibility(View.VISIBLE);
+            stockRecyclerView.setVisibility(View.GONE);
+            error.setText(getString(R.string.error_no_stocks));
         }
         adapter.setCursor(data);
     }

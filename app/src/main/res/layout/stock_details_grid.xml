@@ -22,6 +22,18 @@
         android:contentDescription="@string/a11y_historical_chart"
         />
 
+    <TextView
+        android:id="@+id/errorText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_marginStart="@dimen/abc_list_item_padding_horizontal_material"
+        android:layout_marginEnd="@dimen/abc_list_item_padding_horizontal_material"
+        android:text="@string/error_no_network_chart"
+        android:textColor="@color/colorGray"
+        android:contentDescription="@string/a11y_error_no_network_chart"
+        />
+
     <android.support.v4.widget.Space
         android:layout_columnSpan="2"
         android:layout_columnWeight="1"

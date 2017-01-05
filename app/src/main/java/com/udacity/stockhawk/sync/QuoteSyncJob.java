@@ -94,8 +94,7 @@ public final class QuoteSyncJob {
 
                             // WARNING! Don't request historical data for a stock that doesn't exist!
                             // The request will hang forever X_x
-                            // it was added this try in order to catch if the there is no csv. The catch section is not removing the symbol as it is valid however it doesn't get the file.
-                            //TODO find a more efficient way to manage the errors and inform the user. If it is possible.
+                            // it was added this try in order to catch if the there is no csv. The catch section is not removing the symbol as it is valid however it doesn't get the file
 
                             try{
 
@@ -125,9 +124,9 @@ public final class QuoteSyncJob {
                                 String logText=String.format(context.getString(R.string.error_stock_code_not_valid),symbol);
                                 Log.i (LOG_TAG,logText);
 
-
-
-                            }
+                                //Remove the invalid code
+                                PrefUtils.removeStock(context,symbol);
+                           }
 
 
                         }else{
