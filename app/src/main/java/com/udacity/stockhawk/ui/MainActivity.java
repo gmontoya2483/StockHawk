@@ -64,11 +64,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         //initialize Stetho
 
-        Stetho.initialize(
+        /*Stetho.initialize(
                 Stetho.newInitializerBuilder(this)
                 .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
                 .build()
-        );
+        );*/
 
         mContext=this.getApplication();
        setContentView(R.layout.activity_main);
