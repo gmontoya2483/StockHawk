@@ -114,14 +114,7 @@ public class StockWidgetConfigure extends Activity {
             finish();
 
 
-            /*Intent startService = new Intent(StockWidgetConfigure.this, StockWidgetIntentService.class);
-            startService.putExtra(EXTRA_APPWIDGET_ID, mAppWidgetId);
-            //startService.putExtra(Contract.Quote.COLUMN_SYMBOL,mSymbol);
-            startService.setAction("FROM CONFIGURATION ACTIVITY");
-            setResult(RESULT_OK, startService);
-            startService(startService);
 
-            finish();*/
         }else{
             Log.i(LOG_TAG, getApplicationContext().getString(R.string.conf_invalid_app_widget_id));
             finish();
